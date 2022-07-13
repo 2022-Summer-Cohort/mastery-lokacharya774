@@ -16,7 +16,7 @@
             <h1 class="header__title">Surviving Coding Boot Camp</h1>
             <nav class="header__nav">
                 <div class="header__nav-item"><a href="/" class="header__nav-link">Home</a></div>
-                <div class="header__nav-item"><a href="/hashtags" class="header__nav-link">Hashtags</a></div>
+                <div class="header__nav-item"><a href="/hashtags/" class="header__nav-link">Hashtags</a></div>
             </nav>
         </header>
         <main class="main-content">
@@ -27,6 +27,17 @@
                 <p th:text="${post.content}" class="post__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis, aut quae fuga id quis ut. 
                     Eligendi necessitatibus blanditiis officia, odio deleniti natus molestiae fugiat ex quod vel aliquam illum.
                 </p>
+                
+                <ul>
+                    <li th:each = "thing:${post.hashtags}"><a th:href="'/hashtags/' + ${thing.id}"
+                                                               th:text = "${thing.name}"></a>
+                    </li>
+                </ul>
+                <form th:action="'/posts/' + ${post.id} + '/addHashtag'" method = "POST">
+                    <label for="hashtag">Add hashtag</label>
+                    <input type="text" name = "hashtag" id="hashtag"/>
+                    <button type = "submit">Submit</button>
+                </form>
             </section>
         </main>
     </div>
